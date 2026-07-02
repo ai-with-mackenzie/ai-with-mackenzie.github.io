@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI with MacKenzie</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:       #2d4a3e;
+      --green-light: #3d6354;
+      --green-pale:  #eef3f1;
+      --cream:       #faf8f5;
+      --text:        #1c1c1c;
+      --muted:       #5a6a65;
+      --white:       #ffffff;
+      --accent:      #c8a96e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid #e4ddd6;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--white) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--green-light) !important; color: var(--white) !important; }
+
+    /* ── HERO ── */
+    .hero-banner-wrapper {
+      padding-top: 3rem;
+      background: var(--cream);
+    }
+
+    .hero-banner {
+      background: var(--green);
+      text-align: center;
+      padding: 3.5rem 2rem;
+    }
+
+    .hero-banner h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 1.1;
+      color: var(--white);
+    }
+
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 1.1;
+      color: var(--green);
+      margin-bottom: 1rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-tagline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      color: var(--green-light);
+      font-style: italic;
+      margin-bottom: 1.4rem;
+      line-height: 1.3;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 2.4rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .btn-primary:hover { background: var(--green-light); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--green);
+      border: 1.5px solid var(--green);
+    }
+
+    .btn-secondary:hover { background: var(--green-pale); }
+
+    /* ── GREEN DIVIDER BAR ── */
+    .green-bar {
+      background: var(--green);
+      height: 6px;
+    }
+
+    /* ── SECTION DEFAULTS ── */
+    section { padding: 5rem 2rem; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--green);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ── WHO IT'S FOR ── */
+    .for-section { background: var(--white); }
+
+    .for-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .for-card {
+      background: var(--green-pale);
+      border-radius: 20px;
+      padding: 2.4rem;
+    }
+
+    .for-card-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--green);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .for-card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .for-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--green);
+      margin-bottom: 0.8rem;
+    }
+
+    .for-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .for-card ul {
+      margin-top: 1rem;
+      padding-left: 1.2rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.9;
+    }
+
+    /* ── TOPICS & TOOLS ── */
+    .topics-section { background: var(--green); color: var(--white); }
+
+    .topics-section .section-label { color: var(--accent); }
+    .topics-section .section-title { color: var(--white); }
+    .topics-section .section-sub { color: rgba(255,255,255,0.75); }
+
+    .topics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .topics-group h4 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .topics-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .topics-list li {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.88);
+      padding-left: 1.4rem;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .topics-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .tools-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 0;
+    }
+
+    .tool-chip {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      padding: 0.45rem 1rem;
+      border-radius: 100px;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-section { background: var(--cream); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .step {
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .step-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--white);
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+    }
+
+    .step h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--green);
+      margin-bottom: 0.6rem;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    /* ── SERVICES ── */
+    .services-section { background: var(--white); }
+
+    .services-audience {
+      margin-top: 3.5rem;
+    }
+
+    .audience-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--green-pale);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .services-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .service-card {
+      border: 1.5px solid #e0dbd4;
+      border-radius: 20px;
+      padding: 2.2rem;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .service-card:hover {
+      border-color: var(--green);
+      box-shadow: 0 8px 30px rgba(45,74,62,0.1);
+    }
+
+    .service-card.featured {
+      border-color: var(--green);
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .service-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+      display: inline-block;
+      margin-bottom: 1rem;
+      align-self: flex-start;
+    }
+
+    .service-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.4rem;
+      color: var(--green);
+    }
+
+    .service-card.featured h3 { color: var(--white); }
+
+    .service-price {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 0.2rem;
+    }
+
+    .service-card.featured .service-price { color: var(--white); }
+
+    .service-price-contact {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 0.2rem;
+      font-style: italic;
+    }
+
+    .service-duration {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .service-card.featured .service-duration { color: rgba(255,255,255,0.7); }
+
+    .service-list {
+      list-style: none;
+      margin-bottom: 1.8rem;
+      flex: 1;
+    }
+
+    .service-list li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.3rem 0;
+      padding-left: 1.4rem;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .service-card.featured .service-list li { color: rgba(255,255,255,0.85); }
+
+    .service-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .service-card .btn { margin-top: auto; text-align: center; }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--green);
+    }
+
+    .btn-white:hover { background: var(--green-pale); }
+
+    /* ── ABOUT ── */
+    .about-section { background: var(--green-pale); }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+      aspect-ratio: 3/4;
+      box-shadow: 0 16px 48px rgba(45,74,62,0.15);
+    }
+
+    .about-content .section-title { margin-bottom: 1.4rem; }
+
+    .about-content p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-stat {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      background: var(--green);
+      color: var(--white);
+      padding: 0.6rem 1.2rem;
+      border-radius: 100px;
+      margin-top: 0.8rem;
+      margin-right: 0.5rem;
+    }
+
+    .about-stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+    }
+
+    .about-stat-label {
+      font-size: 0.82rem;
+      opacity: 0.85;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section { background: var(--green); color: var(--white); text-align: center; }
+
+    .contact-section .section-label { color: var(--accent); }
+    .contact-section .section-title { color: var(--white); margin: 0 auto 1rem; }
+    .contact-section .section-sub { color: rgba(255,255,255,0.75); margin: 0 auto 2.4rem; }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .contact-email svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    .contact-email:hover { background: rgba(255,255,255,0.2); }
+
+    .contact-note {
+      margin-top: 1.2rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a2e27;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.82rem;
+    }
+
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { padding: 4rem 1.5rem 3.5rem; }
+      .for-grid, .steps, .services-grid, .services-grid-2 { grid-template-columns: 1fr; }
+      .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-image img { aspect-ratio: 1/1; max-width: 260px; margin: 0 auto; display: block; }
+      nav { padding: 0 1.2rem; }
+      .nav-links { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">AI with MacKenzie</a>
+    <ul class="nav-links">
+      <li><a href="#who">Who It's For</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO BANNER -->
+  <div class="hero-banner-wrapper">
+    <div class="hero-banner">
+      <h1>Learn AI With MacKenzie</h1>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">AI Tutoring &amp; Training</p>
+    <p class="hero-tagline">When you understand AI, using it becomes effortless.</p>
+    <p class="hero-sub">
+      I help small business owners and professionals go from AI-curious to AI-confident through live, 1-on-1 sessions built around how you actually work.
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="btn btn-primary">See Services</a>
+      <a href="#contact" class="btn btn-primary">Work with Me</a>
+    </div>
+  </div>
+
+  <!-- GREEN DIVIDER BAR -->
+  <div class="green-bar"></div>
+
+  <!-- WHO IT'S FOR -->
+  <section class="for-section" id="who">
+    <div class="container">
+      <p class="section-label">Who It's For</p>
+      <h2 class="section-title">You don't have to figure out AI alone.</h2>
+      <p class="section-sub">Whether you run a business or want to level up at work, I'll meet you exactly where you are.</p>
+      <div class="for-grid">
+        <div class="for-card">
+          <div class="for-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Small Business Owners</h3>
+          <p>You keep hearing about AI but don't know where to start or if it's even worth your time. It is. And I'll show you exactly how to use it in your business.</p>
+          <ul>
+            <li>No tech background required</li>
+            <li>Learn tools you'll actually use every day</li>
+            <li>Do more with less without adding headcount</li>
+            <li>Stay competitive without hiring a team</li>
+          </ul>
+        </div>
+        <div class="for-card">
+          <div class="for-card-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3>Professionals</h3>
+          <p>You want to use AI at work but copy-pasting from ChatGPT isn't cutting it. Learn to build real workflows that make you faster, sharper, and more effective.</p>
+          <ul>
+            <li>Understand how AI actually works</li>
+            <li>Build workflows tailored to your role</li>
+            <li>Get the skills top tech companies teach their teams</li>
+            <li>Start seeing results immediately</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPICS & TOOLS -->
+  <section class="topics-section">
+    <div class="container">
+      <p class="section-label">Topics &amp; Tools</p>
+      <h2 class="section-title">What we can cover together.</h2>
+      <p class="section-sub">Sessions are tailored to you here's a sample of what's on the table.</p>
+      <div class="topics-grid">
+        <div class="topics-group">
+          <h4>Topics</h4>
+          <ul class="topics-list">
+            <li>Foundations of AI what are LLMs and how do they work?</li>
+            <li>Prompt writing and prompt engineering</li>
+            <li>Building AI workflows</li>
+            <li>Building custom AI skills</li>
+            <li>Optimizing AI</li>
+            <li>AI for research and summarization</li>
+            <li>AI for data summarization and reporting</li>
+            <li>Extending AI with third-party tools and APIs</li>
+            <li>AI cost management</li>
+          </ul>
+        </div>
+        <div class="topics-group">
+          <h4>Tools</h4>
+          <ul class="topics-list">
+            <li>Claude Code &amp; Claude CoWork</li>
+            <li>ChatGPT</li>
+            <li>Codex</li>
+            <li>Gemini</li>
+            <li>Microsoft Copilot</li>
+            <li>...and more</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <div class="container">
+      <p class="section-label">How It Works</p>
+      <h2 class="section-title">Simple, personal, and actually useful.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Reach Out</h3>
+          <p>Send me an email introducing yourself and what you're hoping to learn. I'll get back to you within 24 hours.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Free Discovery Call</h3>
+          <p>We hop on a quick 15-minute call so I can understand your goals and recommend the right path forward no commitment needed.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Start Learning</h3>
+          <p>We meet live over video for personalized, hands-on sessions. You'll leave every session with skills you can use immediately.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <p class="section-label">Services &amp; Pricing</p>
+      <h2 class="section-title">Find the right fit for you.</h2>
+      <p class="section-sub">All sessions are live and tailored to your specific work and goals.</p>
+
+      <!-- PROFESSIONALS -->
+      <div class="services-audience">
+        <p class="audience-label">For Professionals</p>
+        <div class="services-grid">
+
+          <div class="service-card">
+            <h3>AI Foundations</h3>
+            <div class="service-price">$175</div>
+            <div class="service-duration">60-minute session</div>
+            <ul class="service-list">
+              <li>What AI and LLMs actually are</li>
+              <li>How AI thinks and why that matters</li>
+              <li>Live demo with your real questions</li>
+              <li>Which tools are right for you</li>
+              <li>Your biggest questions answered</li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary">Get Started</a>
+          </div>
+
+          <div class="service-card featured">
+            <span class="service-badge">Best Value</span>
+            <h3>5-Session Package</h3>
+            <div class="service-price">$750</div>
+            <div class="service-duration">5 sessions · 60 min each</div>
+            <ul class="service-list">
+              <li>Everything in AI Foundations</li>
+              <li>AI workflows built for your specific role</li>
+              <li>Prompt writing that actually works</li>
+              <li>Hands-on practice with real tasks</li>
+              <li>Personalized toolkit and next steps</li>
+            </ul>
+            <a href="#contact" class="btn btn-white">Get Started</a>
+          </div>
+
+          <div class="service-card">
+            <h3>1-on-1 Hourly</h3>
+            <div class="service-price">$175</div>
+            <div class="service-duration">per hour · flexible scheduling</div>
+            <ul class="service-list">
+              <li>Drop-in sessions as needed</li>
+              <li>Great for specific questions or roadblocks</li>
+              <li>Pick up where you left off anytime</li>
+              <li>No package commitment required</li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary">Get Started</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SMALL BUSINESSES -->
+      <div class="services-audience">
+        <p class="audience-label">For Small Businesses</p>
+        <div class="services-grid-2">
+
+          <div class="service-card featured">
+            <h3>AI Jumpstart</h3>
+            <div class="service-price-contact" style="color:rgba(255,255,255,0.9)">Custom pricing</div>
+            <div class="service-duration">Tailored to your business</div>
+            <ul class="service-list">
+              <li>Discover where AI fits in your business</li>
+              <li>Hands-on intro to the right tools for you</li>
+              <li>Leave with a clear action plan</li>
+              <li>No tech background needed</li>
+            </ul>
+            <a href="#contact" class="btn btn-white">Get in Touch</a>
+          </div>
+
+          <div class="service-card">
+            <h3>Ongoing AI Support</h3>
+            <div class="service-price-contact">Custom pricing</div>
+            <div class="service-duration">Flexible, ongoing partnership</div>
+            <ul class="service-list">
+              <li>Regular sessions as your business grows</li>
+              <li>Build and refine AI workflows over time</li>
+              <li>Stay current as AI tools evolve</li>
+              <li>A trusted resource in your corner</li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CORPORATE -->
+      <div class="services-audience">
+        <p class="audience-label">For Teams &amp; Organizations</p>
+        <div class="services-grid-2">
+
+          <div class="service-card">
+            <h3>Team Workshop</h3>
+            <div class="service-price-contact">Custom pricing</div>
+            <div class="service-duration">Half-day or full-day formats</div>
+            <ul class="service-list">
+              <li>AI fundamentals tailored to your industry</li>
+              <li>Hands-on practice with real use cases</li>
+              <li>Live Q&amp;A and team discussion</li>
+              <li>Frameworks your team can use right away</li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+          </div>
+
+          <div class="service-card featured">
+            <h3>Corporate Training Program</h3>
+            <div class="service-price" style="color:var(--white); font-size:1.1rem; font-style:italic; font-weight:400;">Custom pricing</div>
+            <div class="service-duration">Multi-session, organization-wide</div>
+            <ul class="service-list">
+              <li>Custom curriculum for your team's needs</li>
+              <li>Scalable across departments or roles</li>
+              <li>Built on enterprise AI training experience</li>
+              <li>Ongoing support and follow-up sessions</li>
+            </ul>
+            <a href="#contact" class="btn btn-white">Get in Touch</a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-image">
+          <img src="photo.jpg" alt="MacKenzie Cummins" />
+        </div>
+        <div class="about-content">
+          <p class="section-label">About MacKenzie</p>
+          <h2 class="section-title">I've spent years teaching AI to people who thought it wasn't for them.</h2>
+          <p>
+            As an AI Enablement Manager at a Fortune 500 tech company, I've trained hundreds of professionals on how AI and large language models (LLMs) actually work and how to build real workflows that make their jobs easier.
+          </p>
+          <p>
+            What I've learned is that the people who use AI best aren't the ones who know the most about technology. They're the ones who understand <em>how AI thinks</em>. Once that clicks, everything else follows.
+          </p>
+          <p>
+            I started AI with MacKenzie to bring that same approach to small business owners and professionals who want to stop feeling behind and start using AI with genuine confidence.
+          </p>
+          <div>
+            <span class="about-stat">
+              <span class="about-stat-num">100s</span>
+              <span class="about-stat-label">of professionals trained</span>
+            </span>
+            <span class="about-stat">
+              <span class="about-stat-num">1-on-1</span>
+              <span class="about-stat-label">personalized sessions</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Ready to start?</h2>
+      <p class="section-sub">Send me an email and tell me a little about yourself and what you're hoping to learn. I'll get back to you within 24 hours and we'll set up a free 15-minute discovery call.</p>
+      <a href="mailto:mackenziemcummins@gmail.com" class="contact-email">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        mackenziemcummins@gmail.com
+      </a>
+      <p class="contact-note">Free 15-minute discovery call included no commitment required.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 AI with MacKenzie &middot; <a href="mailto:mackenziemcummins@gmail.com">mackenziemcummins@gmail.com</a></p>
+  </footer>
+
+</body>
+</html>
