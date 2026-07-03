@@ -28,7 +28,7 @@
       line-height: 1.6;
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: sticky;
       top: 0;
@@ -75,7 +75,7 @@
 
     .nav-cta:hover { background: var(--green-light) !important; color: var(--white) !important; }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero-banner-wrapper {
       padding-top: 3rem;
       background: var(--cream);
@@ -99,14 +99,6 @@
       margin: 0 auto;
       padding: 4rem 2rem 6rem;
       text-align: center;
-    }
-
-    .hero h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(3rem, 6vw, 5rem);
-      line-height: 1.1;
-      color: var(--green);
-      margin-bottom: 1rem;
     }
 
     .hero-eyebrow {
@@ -154,34 +146,19 @@
       border: none;
     }
 
-    .btn-primary {
-      background: var(--green);
-      color: var(--white);
-    }
-
+    .btn-primary { background: var(--green); color: var(--white); }
     .btn-primary:hover { background: var(--green-light); }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--green);
-      border: 1.5px solid var(--green);
-    }
-
+    .btn-secondary { background: transparent; color: var(--green); border: 1.5px solid var(--green); }
     .btn-secondary:hover { background: var(--green-pale); }
+    .btn-white { background: var(--white); color: var(--green); }
+    .btn-white:hover { background: var(--green-pale); }
 
-    /* ── GREEN DIVIDER BAR ── */
-    .green-bar {
-      background: var(--green);
-      height: 6px;
-    }
+    .green-bar { background: var(--green); height: 6px; }
 
-    /* ── SECTION DEFAULTS ── */
+    /* SECTIONS */
     section { padding: 5rem 2rem; }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+    .container { max-width: 1100px; margin: 0 auto; }
 
     .section-label {
       font-size: 0.75rem;
@@ -207,7 +184,7 @@
       line-height: 1.7;
     }
 
-    /* ── WHO IT'S FOR ── */
+    /* WHO IT'S FOR */
     .for-section { background: var(--white); }
 
     .for-grid {
@@ -217,11 +194,7 @@
       margin-top: 3rem;
     }
 
-    .for-card {
-      background: var(--green-pale);
-      border-radius: 20px;
-      padding: 2.4rem;
-    }
+    .for-card { background: var(--green-pale); border-radius: 20px; padding: 2.4rem; }
 
     .for-card-icon {
       width: 44px;
@@ -244,30 +217,12 @@
       stroke-linejoin: round;
     }
 
-    .for-card h3 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.4rem;
-      color: var(--green);
-      margin-bottom: 0.8rem;
-    }
+    .for-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--green); margin-bottom: 0.8rem; }
+    .for-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+    .for-card ul { margin-top: 1rem; padding-left: 1.2rem; color: var(--muted); font-size: 0.92rem; line-height: 1.9; }
 
-    .for-card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    .for-card ul {
-      margin-top: 1rem;
-      padding-left: 1.2rem;
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.9;
-    }
-
-    /* ── TOPICS & TOOLS ── */
+    /* TOPICS & TOOLS */
     .topics-section { background: var(--green); color: var(--white); }
-
     .topics-section .section-label { color: var(--accent); }
     .topics-section .section-title { color: var(--white); }
     .topics-section .section-sub { color: rgba(255,255,255,0.75); }
@@ -288,12 +243,7 @@
       margin-bottom: 1.2rem;
     }
 
-    .topics-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
+    .topics-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
 
     .topics-list li {
       font-size: 0.95rem;
@@ -303,45 +253,29 @@
       line-height: 1.5;
     }
 
-    .topics-list li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
+    .topics-list li::before { content: '\2192'; position: absolute; left: 0; color: var(--accent); font-weight: 600; }
+
+    /* WHY LIVE */
+    .why-live { margin-top: 3rem; background: var(--green); border-radius: 20px; padding: 2rem 2.4rem; }
+
+    .why-live-label {
+      font-size: 0.75rem;
       font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
     }
 
-    .tools-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-top: 0;
-    }
+    .why-live-text { color: rgba(255,255,255,0.88); font-size: 1rem; line-height: 1.8; }
+    .why-live-text em { color: var(--white); font-style: italic; }
 
-    .tool-chip {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.25);
-      color: var(--white);
-      padding: 0.45rem 1rem;
-      border-radius: 100px;
-      font-size: 0.88rem;
-      font-weight: 500;
-    }
-
-    /* ── HOW IT WORKS ── */
+    /* HOW IT WORKS */
     .how-section { background: var(--cream); }
 
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 3rem;
-    }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
 
-    .step {
-      text-align: center;
-      padding: 2rem 1.5rem;
-    }
+    .step { text-align: center; padding: 2rem 1.5rem; }
 
     .step-num {
       width: 48px;
@@ -357,50 +291,59 @@
       margin: 0 auto 1.2rem;
     }
 
-    .step h3 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.2rem;
-      color: var(--green);
-      margin-bottom: 0.6rem;
-    }
+    .step h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--green); margin-bottom: 0.6rem; }
+    .step p { color: var(--muted); font-size: 0.92rem; line-height: 1.7; }
 
-    .step p {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.7;
-    }
-
-    /* ── SERVICES ── */
+    /* SERVICES */
     .services-section { background: var(--white); }
 
     .services-audience {
-      margin-top: 3.5rem;
+      margin-top: 2rem;
+      border: 1.5px solid #e0dbd4;
+      border-radius: 20px;
+      overflow: hidden;
     }
+
+    .audience-toggle {
+      width: 100%;
+      background: var(--green-pale);
+      border: none;
+      cursor: pointer;
+      padding: 1.4rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+    }
+
+    .audience-toggle:hover { background: #e2ede9; }
 
     .audience-label {
-      font-size: 0.75rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--green);
-      margin-bottom: 1.2rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 2px solid var(--green-pale);
     }
 
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 3rem;
+    .audience-chevron {
+      width: 20px;
+      height: 20px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.3s;
+      flex-shrink: 0;
     }
 
-    .services-grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
+    .services-audience.open .audience-chevron { transform: rotate(180deg); }
+    .audience-body { display: none; padding: 2rem; }
+    .services-audience.open .audience-body { display: block; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .services-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 
     .service-card {
       border: 1.5px solid #e0dbd4;
@@ -411,16 +354,9 @@
       transition: box-shadow 0.2s, border-color 0.2s;
     }
 
-    .service-card:hover {
-      border-color: var(--green);
-      box-shadow: 0 8px 30px rgba(45,74,62,0.1);
-    }
+    .service-card:hover { border-color: var(--green); box-shadow: 0 8px 30px rgba(45,74,62,0.1); }
 
-    .service-card.featured {
-      border-color: var(--green);
-      background: var(--green);
-      color: var(--white);
-    }
+    .service-card.featured { border-color: var(--green); background: var(--green); color: var(--white); }
 
     .service-badge {
       font-size: 0.72rem;
@@ -436,45 +372,18 @@
       align-self: flex-start;
     }
 
-    .service-card h3 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.3rem;
-      margin-bottom: 0.4rem;
-      color: var(--green);
-    }
-
+    .service-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 0.4rem; color: var(--green); }
     .service-card.featured h3 { color: var(--white); }
 
-    .service-price {
-      font-size: 2rem;
-      font-weight: 600;
-      color: var(--green);
-      margin-bottom: 0.2rem;
-    }
-
+    .service-price { font-size: 2rem; font-weight: 600; color: var(--green); margin-bottom: 0.2rem; }
     .service-card.featured .service-price { color: var(--white); }
 
-    .service-price-contact {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--green);
-      margin-bottom: 0.2rem;
-      font-style: italic;
-    }
+    .service-price-contact { font-size: 1.1rem; font-weight: 600; color: var(--green); margin-bottom: 0.2rem; font-style: italic; }
 
-    .service-duration {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 1.2rem;
-    }
-
+    .service-duration { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.2rem; }
     .service-card.featured .service-duration { color: rgba(255,255,255,0.7); }
 
-    .service-list {
-      list-style: none;
-      margin-bottom: 1.8rem;
-      flex: 1;
-    }
+    .service-list { list-style: none; margin-bottom: 1.8rem; flex: 1; }
 
     .service-list li {
       font-size: 0.88rem;
@@ -487,32 +396,14 @@
 
     .service-card.featured .service-list li { color: rgba(255,255,255,0.85); }
 
-    .service-list li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-weight: 600;
-    }
+    .service-list li::before { content: '\2713'; position: absolute; left: 0; color: var(--accent); font-weight: 600; }
 
     .service-card .btn { margin-top: auto; text-align: center; }
 
-    .btn-white {
-      background: var(--white);
-      color: var(--green);
-    }
-
-    .btn-white:hover { background: var(--green-pale); }
-
-    /* ── ABOUT ── */
+    /* ABOUT */
     .about-section { background: var(--green-pale); }
 
-    .about-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      gap: 5rem;
-      align-items: center;
-    }
+    .about-inner { display: grid; grid-template-columns: 1fr 1.6fr; gap: 5rem; align-items: center; }
 
     .about-image img {
       width: 100%;
@@ -523,13 +414,7 @@
     }
 
     .about-content .section-title { margin-bottom: 1.4rem; }
-
-    .about-content p {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.8;
-      margin-bottom: 1.2rem;
-    }
+    .about-content p { color: var(--muted); font-size: 1rem; line-height: 1.8; margin-bottom: 1.2rem; }
 
     .about-stat {
       display: inline-flex;
@@ -543,19 +428,11 @@
       margin-right: 0.5rem;
     }
 
-    .about-stat-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.4rem;
-    }
+    .about-stat-num { font-family: 'DM Serif Display', serif; font-size: 1.4rem; }
+    .about-stat-label { font-size: 0.82rem; opacity: 0.85; }
 
-    .about-stat-label {
-      font-size: 0.82rem;
-      opacity: 0.85;
-    }
-
-    /* ── CONTACT ── */
+    /* CONTACT */
     .contact-section { background: var(--green); color: var(--white); text-align: center; }
-
     .contact-section .section-label { color: var(--accent); }
     .contact-section .section-title { color: var(--white); margin: 0 auto 1rem; }
     .contact-section .section-sub { color: rgba(255,255,255,0.75); margin: 0 auto 2.4rem; }
@@ -587,27 +464,16 @@
 
     .contact-email:hover { background: rgba(255,255,255,0.2); }
 
-    .contact-note {
-      margin-top: 1.2rem;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.55);
-    }
+    .contact-note { margin-top: 1.2rem; font-size: 0.85rem; color: rgba(255,255,255,0.55); }
 
-    /* ── FOOTER ── */
-    footer {
-      background: #1a2e27;
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.82rem;
-    }
-
+    /* FOOTER */
+    footer { background: #1a2e27; color: rgba(255,255,255,0.5); text-align: center; padding: 2rem; font-size: 0.82rem; }
     footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
 
-    /* ── RESPONSIVE ── */
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       .hero { padding: 4rem 1.5rem 3.5rem; }
-      .for-grid, .steps, .services-grid, .services-grid-2 { grid-template-columns: 1fr; }
+      .for-grid, .steps, .services-grid, .services-grid-2, .topics-grid { grid-template-columns: 1fr; }
       .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-image img { aspect-ratio: 1/1; max-width: 260px; margin: 0 auto; display: block; }
       nav { padding: 0 1.2rem; }
@@ -617,7 +483,6 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">AI with MacKenzie</a>
     <ul class="nav-links">
@@ -628,30 +493,24 @@
     </ul>
   </nav>
 
-  <!-- HERO BANNER -->
   <div class="hero-banner-wrapper">
     <div class="hero-banner">
       <h1>Learn AI With MacKenzie</h1>
     </div>
   </div>
 
-  <!-- HERO -->
   <div class="hero">
     <p class="hero-eyebrow">AI Tutoring &amp; Training</p>
     <p class="hero-tagline">When you understand AI, using it becomes effortless.</p>
-    <p class="hero-sub">
-      I help small business owners and professionals go from AI-curious to AI-confident through live, 1-on-1 sessions built around how you actually work.
-    </p>
+    <p class="hero-sub">I help small business owners and professionals go from AI-curious to AI-confident through live, 1-on-1 sessions built around how you actually work.</p>
     <div class="hero-actions">
       <a href="#services" class="btn btn-primary">See Services</a>
       <a href="#contact" class="btn btn-primary">Work with Me</a>
     </div>
   </div>
 
-  <!-- GREEN DIVIDER BAR -->
   <div class="green-bar"></div>
 
-  <!-- WHO IT'S FOR -->
   <section class="for-section" id="who">
     <div class="container">
       <p class="section-label">Who It's For</p>
@@ -663,7 +522,7 @@
             <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           </div>
           <h3>Small Business Owners</h3>
-          <p>You keep hearing about AI but don't know where to start or if it's even worth your time. It is. And I'll show you exactly how to use it in your business.</p>
+          <p>You keep hearing about AI but don't know where to start or if it's even worth your time. I believe that it is, and I'll show you exactly how to use it in your business.</p>
           <ul>
             <li>No tech background required</li>
             <li>Learn tools you'll actually use every day</li>
@@ -688,17 +547,16 @@
     </div>
   </section>
 
-  <!-- TOPICS & TOOLS -->
   <section class="topics-section">
     <div class="container">
       <p class="section-label">Topics &amp; Tools</p>
       <h2 class="section-title">What we can cover together.</h2>
-      <p class="section-sub">Sessions are tailored to you here's a sample of what's on the table.</p>
+      <p class="section-sub">Sessions are tailored to you. Here's a sample of what's on the table.</p>
       <div class="topics-grid">
         <div class="topics-group">
           <h4>Topics</h4>
           <ul class="topics-list">
-            <li>Foundations of AI what are LLMs and how do they work?</li>
+            <li>Foundations of AI: what are LLMs and how do they work?</li>
             <li>Prompt writing and prompt engineering</li>
             <li>Building AI workflows</li>
             <li>Building custom AI skills</li>
@@ -724,7 +582,6 @@
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
   <section class="how-section">
     <div class="container">
       <p class="section-label">How It Works</p>
@@ -738,146 +595,200 @@
         <div class="step">
           <div class="step-num">2</div>
           <h3>Free Discovery Call</h3>
-          <p>We hop on a quick 15-minute call so I can understand your goals and recommend the right path forward no commitment needed.</p>
+          <p>We hop on a quick 15-minute call so I can understand your goals and recommend the right path forward. No commitment needed.</p>
         </div>
         <div class="step">
           <div class="step-num">3</div>
-          <h3>Start Learning</h3>
-          <p>We meet live over video for personalized, hands-on sessions. You'll leave every session with skills you can use immediately.</p>
+          <h3>Learn Live, Together</h3>
+          <p>We meet live over video for personalized, hands-on sessions. You ask real questions, we work through real problems. No rewinding a tutorial at 2am.</p>
         </div>
+      </div>
+      <div class="why-live">
+        <p class="why-live-label">Why live training?</p>
+        <p class="why-live-text">I strongly prefer live trainings over on-demand courses. On-demand courses teach you what someone else thought you needed to know. Live sessions are built around <em>you</em>: your tools, your workflow, your questions. You learn faster, retain more, and leave every session with something you can use immediately.</p>
+        <p class="why-live-text" style="margin-top:1rem;">In all honesty, the reason I do live training is simpler than that. I genuinely love the personal component of live trainings. I love the moment when something clicks for someone, and I love being able to facilitate that. I love being able to read the room, slow down when something isn't landing, and go deeper when someone is ready to push further. That back-and-forth is what makes learning stick!</p>
+        <p class="why-live-text" style="margin-top:1rem;">I want every session to feel personal, because I genuinely care that you walk away feeling like it was worth your time and money. I've seen what happens when someone finally gets it, and I want that for every single person I work with. That's something a pre-recorded course just can't give you.</p>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
   <section class="services-section" id="services">
     <div class="container">
       <p class="section-label">Services &amp; Pricing</p>
       <h2 class="section-title">Find the right fit for you.</h2>
       <p class="section-sub">All sessions are live and tailored to your specific work and goals.</p>
 
-      <!-- PROFESSIONALS -->
-      <div class="services-audience">
-        <p class="audience-label">For Professionals</p>
-        <div class="services-grid">
-
-          <div class="service-card">
-            <h3>AI Foundations</h3>
-            <div class="service-price">$175</div>
-            <div class="service-duration">60-minute session</div>
-            <ul class="service-list">
-              <li>What AI and LLMs actually are</li>
-              <li>How AI thinks and why that matters</li>
-              <li>Live demo with your real questions</li>
-              <li>Which tools are right for you</li>
-              <li>Your biggest questions answered</li>
-            </ul>
-            <a href="#contact" class="btn btn-secondary">Get Started</a>
+      <div class="services-audience open">
+        <button class="audience-toggle" onclick="this.parentElement.classList.toggle('open')">
+          <span class="audience-label">For Professionals</span>
+          <svg class="audience-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="audience-body">
+          <div class="services-grid">
+            <div class="service-card">
+              <h3>AI Foundations</h3>
+              <div class="service-price">$175</div>
+              <div class="service-duration">60-minute session</div>
+              <ul class="service-list">
+                <li>What AI and LLMs actually are</li>
+                <li>How AI thinks and why that matters</li>
+                <li>Live demo with your real questions</li>
+                <li>Which tools are right for you</li>
+                <li>Your biggest questions answered</li>
+              </ul>
+              <a href="#contact" class="btn btn-secondary">Get Started</a>
+            </div>
+            <div class="service-card featured">
+              <span class="service-badge">Best Value</span>
+              <h3>5-Session Package</h3>
+              <div class="service-price">$750</div>
+              <div class="service-duration">5 sessions · 60 min each</div>
+              <ul class="service-list">
+                <li>Everything in AI Foundations</li>
+                <li>AI workflows built for your specific role</li>
+                <li>Prompt writing that actually works</li>
+                <li>Hands-on practice with real tasks</li>
+                <li>Personalized toolkit and next steps</li>
+              </ul>
+              <a href="#contact" class="btn btn-white">Get Started</a>
+            </div>
+            <div class="service-card">
+              <h3>1-on-1 Hourly</h3>
+              <div class="service-price">$175</div>
+              <div class="service-duration">per hour · flexible scheduling</div>
+              <ul class="service-list">
+                <li>Drop-in sessions as needed</li>
+                <li>Great for specific questions or roadblocks</li>
+                <li>Pick up where you left off anytime</li>
+                <li>No package commitment required</li>
+              </ul>
+              <a href="#contact" class="btn btn-secondary">Get Started</a>
+            </div>
           </div>
-
-          <div class="service-card featured">
-            <span class="service-badge">Best Value</span>
-            <h3>5-Session Package</h3>
-            <div class="service-price">$750</div>
-            <div class="service-duration">5 sessions · 60 min each</div>
-            <ul class="service-list">
-              <li>Everything in AI Foundations</li>
-              <li>AI workflows built for your specific role</li>
-              <li>Prompt writing that actually works</li>
-              <li>Hands-on practice with real tasks</li>
-              <li>Personalized toolkit and next steps</li>
-            </ul>
-            <a href="#contact" class="btn btn-white">Get Started</a>
-          </div>
-
-          <div class="service-card">
-            <h3>1-on-1 Hourly</h3>
-            <div class="service-price">$175</div>
-            <div class="service-duration">per hour · flexible scheduling</div>
-            <ul class="service-list">
-              <li>Drop-in sessions as needed</li>
-              <li>Great for specific questions or roadblocks</li>
-              <li>Pick up where you left off anytime</li>
-              <li>No package commitment required</li>
-            </ul>
-            <a href="#contact" class="btn btn-secondary">Get Started</a>
-          </div>
-
         </div>
       </div>
 
-      <!-- SMALL BUSINESSES -->
       <div class="services-audience">
-        <p class="audience-label">For Small Businesses</p>
-        <div class="services-grid-2">
-
-          <div class="service-card featured">
-            <h3>AI Jumpstart</h3>
-            <div class="service-price-contact" style="color:rgba(255,255,255,0.9)">Custom pricing</div>
-            <div class="service-duration">Tailored to your business</div>
-            <ul class="service-list">
-              <li>Discover where AI fits in your business</li>
-              <li>Hands-on intro to the right tools for you</li>
-              <li>Leave with a clear action plan</li>
-              <li>No tech background needed</li>
-            </ul>
-            <a href="#contact" class="btn btn-white">Get in Touch</a>
+        <button class="audience-toggle" onclick="this.parentElement.classList.toggle('open')">
+          <span class="audience-label">For Small Businesses</span>
+          <svg class="audience-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="audience-body">
+          <div class="services-grid-2">
+            <div class="service-card featured">
+              <h3>AI Jumpstart</h3>
+              <div class="service-price-contact" style="color:rgba(255,255,255,0.9)">Custom pricing</div>
+              <div class="service-duration">Tailored to your business</div>
+              <ul class="service-list">
+                <li>Discover where AI fits in your business</li>
+                <li>Hands-on intro to the right tools for you</li>
+                <li>Leave with a clear action plan</li>
+                <li>No tech background needed</li>
+              </ul>
+              <a href="#contact" class="btn btn-white">Get in Touch</a>
+            </div>
+            <div class="service-card">
+              <h3>Ongoing AI Support</h3>
+              <div class="service-price-contact">Custom pricing</div>
+              <div class="service-duration">Flexible, ongoing partnership</div>
+              <ul class="service-list">
+                <li>Regular sessions as your business grows</li>
+                <li>Build and refine AI workflows over time</li>
+                <li>Stay current as AI tools evolve</li>
+                <li>A trusted resource in your corner</li>
+              </ul>
+              <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
           </div>
-
-          <div class="service-card">
-            <h3>Ongoing AI Support</h3>
-            <div class="service-price-contact">Custom pricing</div>
-            <div class="service-duration">Flexible, ongoing partnership</div>
-            <ul class="service-list">
-              <li>Regular sessions as your business grows</li>
-              <li>Build and refine AI workflows over time</li>
-              <li>Stay current as AI tools evolve</li>
-              <li>A trusted resource in your corner</li>
-            </ul>
-            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-          </div>
-
         </div>
       </div>
 
-      <!-- CORPORATE -->
       <div class="services-audience">
-        <p class="audience-label">For Teams &amp; Organizations</p>
-        <div class="services-grid-2">
-
-          <div class="service-card">
-            <h3>Team Workshop</h3>
-            <div class="service-price-contact">Custom pricing</div>
-            <div class="service-duration">Half-day or full-day formats</div>
-            <ul class="service-list">
-              <li>AI fundamentals tailored to your industry</li>
-              <li>Hands-on practice with real use cases</li>
-              <li>Live Q&amp;A and team discussion</li>
-              <li>Frameworks your team can use right away</li>
-            </ul>
-            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+        <button class="audience-toggle" onclick="this.parentElement.classList.toggle('open')">
+          <span class="audience-label">For Teams &amp; Organizations</span>
+          <svg class="audience-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="audience-body">
+          <div class="services-grid-2">
+            <div class="service-card">
+              <h3>Team Workshop</h3>
+              <div class="service-price-contact">Custom pricing</div>
+              <div class="service-duration">Half-day or full-day formats</div>
+              <ul class="service-list">
+                <li>AI fundamentals tailored to your industry</li>
+                <li>Hands-on practice with real use cases</li>
+                <li>Live Q&amp;A and team discussion</li>
+                <li>Frameworks your team can use right away</li>
+              </ul>
+              <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+            <div class="service-card featured">
+              <h3>Corporate Training Program</h3>
+              <div class="service-price-contact" style="color:rgba(255,255,255,0.9)">Custom pricing</div>
+              <div class="service-duration">Multi-session, organization-wide</div>
+              <ul class="service-list">
+                <li>Custom curriculum for your team's needs</li>
+                <li>Scalable across departments or roles</li>
+                <li>Built on enterprise AI training experience</li>
+                <li>Ongoing support and follow-up sessions</li>
+              </ul>
+              <a href="#contact" class="btn btn-white">Get in Touch</a>
+            </div>
           </div>
+        </div>
+      </div>
 
-          <div class="service-card featured">
-            <h3>Corporate Training Program</h3>
-            <div class="service-price" style="color:var(--white); font-size:1.1rem; font-style:italic; font-weight:400;">Custom pricing</div>
-            <div class="service-duration">Multi-session, organization-wide</div>
-            <ul class="service-list">
-              <li>Custom curriculum for your team's needs</li>
-              <li>Scalable across departments or roles</li>
-              <li>Built on enterprise AI training experience</li>
-              <li>Ongoing support and follow-up sessions</li>
-            </ul>
-            <a href="#contact" class="btn btn-white">Get in Touch</a>
+      <div class="services-audience">
+        <button class="audience-toggle" onclick="this.parentElement.classList.toggle('open')">
+          <span class="audience-label">AI Consulting</span>
+          <svg class="audience-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="audience-body">
+          <p style="color:var(--muted); font-size:1rem; line-height:1.7; margin-bottom:2rem; max-width:640px;">Ready to bring AI into your business but not sure where to start or how to actually make it work? I'll help you go beyond learning and into doing. From strategy to implementation, I'll work alongside you to build something real.</p>
+          <div class="services-grid">
+            <div class="service-card">
+              <h3>AI Strategy</h3>
+              <div class="service-price-contact">Custom pricing</div>
+              <div class="service-duration">Flexible engagement</div>
+              <ul class="service-list">
+                <li>Assess where AI can have the biggest impact</li>
+                <li>Build a prioritized roadmap for adoption</li>
+                <li>Identify the right tools for your goals</li>
+                <li>Avoid common pitfalls and wasted spend</li>
+              </ul>
+              <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+            <div class="service-card featured">
+              <h3>Hands-On Implementation</h3>
+              <div class="service-price-contact" style="color:rgba(255,255,255,0.9)">Custom pricing</div>
+              <div class="service-duration">Flexible engagement</div>
+              <ul class="service-list">
+                <li>Build AI workflows alongside your team</li>
+                <li>Integrate AI into your existing tools and processes</li>
+                <li>Custom skill and prompt development</li>
+                <li>Ongoing iteration and optimization</li>
+              </ul>
+              <a href="#contact" class="btn btn-white">Get in Touch</a>
+            </div>
+            <div class="service-card">
+              <h3>Ongoing AI Advisory</h3>
+              <div class="service-price-contact">Custom pricing</div>
+              <div class="service-duration">Retainer-based</div>
+              <ul class="service-list">
+                <li>A dedicated AI expert in your corner</li>
+                <li>Stay ahead as tools and capabilities evolve</li>
+                <li>Regular check-ins and strategic guidance</li>
+                <li>Scales with your business</li>
+              </ul>
+              <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
           </div>
-
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section class="about-section" id="about">
     <div class="container">
       <div class="about-inner">
@@ -887,15 +798,9 @@
         <div class="about-content">
           <p class="section-label">About MacKenzie</p>
           <h2 class="section-title">I've spent years teaching AI to people who thought it wasn't for them.</h2>
-          <p>
-            As an AI Enablement Manager at a Fortune 500 tech company, I've trained hundreds of professionals on how AI and large language models (LLMs) actually work and how to build real workflows that make their jobs easier.
-          </p>
-          <p>
-            What I've learned is that the people who use AI best aren't the ones who know the most about technology. They're the ones who understand <em>how AI thinks</em>. Once that clicks, everything else follows.
-          </p>
-          <p>
-            I started AI with MacKenzie to bring that same approach to small business owners and professionals who want to stop feeling behind and start using AI with genuine confidence.
-          </p>
+          <p>As an AI Enablement Manager at a Fortune 500 tech company, I've trained hundreds of professionals on how AI and large language models (LLMs) actually work and how to build real workflows that make their jobs easier.</p>
+          <p>What I've learned is that the people who use AI best aren't the ones who know the most about technology. They're the ones who understand <em>how AI thinks</em>. Once that clicks, everything else follows.</p>
+          <p>I started AI with MacKenzie to bring that same approach to small business owners and professionals who want to stop feeling behind and start using AI with genuine confidence.</p>
           <div>
             <span class="about-stat">
               <span class="about-stat-num">100s</span>
@@ -911,7 +816,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section class="contact-section" id="contact">
     <div class="container">
       <p class="section-label">Get in Touch</p>
@@ -921,11 +825,10 @@
         <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         mackenziemcummins@gmail.com
       </a>
-      <p class="contact-note">Free 15-minute discovery call included no commitment required.</p>
+      <p class="contact-note">Free 15-minute discovery call included. No commitment required.</p>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <p>&copy; 2026 AI with MacKenzie &middot; <a href="mailto:mackenziemcummins@gmail.com">mackenziemcummins@gmail.com</a></p>
   </footer>
