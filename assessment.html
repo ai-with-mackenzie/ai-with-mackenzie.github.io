@@ -259,6 +259,26 @@
       color: var(--muted);
     }
 
+    .dot-scale-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3px;
+    }
+
+    .dot-numbers {
+      display: flex;
+      gap: 5px;
+    }
+
+    .dot-numbers span {
+      width: 24px;
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
     .rating-item {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -681,13 +701,24 @@ const ratingItems = [
 
 const quizItems = [
   {
-    name: 'q_hallucination',
-    q: 'An AI "hallucination" refers to:',
+    name: 'q_context_window',
+    q: 'A "context window" in AI refers to:',
     options: [
-      'The AI generating creative but off-topic ideas',
-      'The AI confidently stating something false or made up',
-      'The AI being slow to respond',
-      'The AI refusing to answer a question',
+      'The history or memory an AI can work with in a single session',
+      'The browser tab the AI runs in',
+      'The settings panel for adjusting AI behavior',
+      'How long the AI takes to generate a response',
+    ],
+    correct: 0,
+  },
+  {
+    name: 'q_tokens',
+    q: 'In AI, what is a "token"?',
+    options: [
+      'A login credential used to access an AI tool',
+      'A small chunk of text — roughly a word or part of a word — that AI models process',
+      'The cost you pay per AI request',
+      'A saved prompt template',
     ],
     correct: 1,
   },
@@ -703,59 +734,59 @@ const quizItems = [
     correct: 1,
   },
   {
-    name: 'q_context_window',
-    q: 'A "context window" in AI refers to:',
+    name: 'q_prompt_role',
+    q: 'Why does giving an AI a specific role (e.g. "You are an experienced marketing copywriter") often improve results?',
     options: [
-      'The history or memory an AI can work with in a single session',
-      'The browser tab the AI runs in',
-      'The settings panel for adjusting AI behavior',
-      'How long the AI takes to generate a response',
-    ],
-    correct: 0,
-  },
-  {
-    name: 'q_best_use',
-    q: 'Which of these is the best use case for AI right now?',
-    options: [
-      'Making final legal or medical decisions independently',
-      'Real-time web browsing without a plugin or tool',
-      'Drafting, summarizing, and iterating on written content',
-      'Replacing all human judgment in business decisions',
+      'It unlocks hidden features in the AI',
+      'It has no real effect — AI ignores those instructions',
+      'It frames the task and steers the AI\'s tone, vocabulary, and focus',
+      'It prevents the AI from making up information',
     ],
     correct: 2,
   },
   {
-    name: 'q_tone',
-    q: 'If you want an AI to match a specific writing tone, the best approach is:',
+    name: 'q_agents',
+    q: 'What is an AI "agent"?',
     options: [
-      'Just ask it to "write better"',
-      'Give it a sample of writing you want to match and describe the tone',
-      'Use a different AI tool each time',
-      'Ask it once and never refine the output',
+      'A human assistant who reviews AI output before sending it',
+      'An AI system that can take actions, use tools, and complete multi-step tasks autonomously',
+      'A pre-written prompt you save for reuse',
+      'A type of AI model that only works with images',
     ],
     correct: 1,
   },
   {
-    name: 'q_privacy',
-    q: 'Which statement about AI and privacy is most accurate?',
+    name: 'q_api',
+    q: 'What does it mean to access an AI model via API?',
     options: [
-      'Everything you type into a free AI tool is private by default',
-      'AI models remember your conversations forever across all sessions',
-      'You should avoid entering sensitive customer or business data into public AI tools',
-      'AI companies are legally prohibited from using your inputs for training',
+      'Using the AI\'s standard chat interface on its website',
+      'Downloading the AI model to run on your own computer',
+      'Connecting to the AI programmatically so it can be built into apps and workflows',
+      'Paying for a premium subscription to unlock faster responses',
     ],
     correct: 2,
   },
   {
-    name: 'q_verify',
-    q: 'When an AI gives you a long, confident-sounding answer, you should:',
+    name: 'q_training',
+    q: 'When we say an AI model was "trained on data up to a certain date," this means:',
     options: [
-      'Trust it — AI doesn\'t make things up',
-      'Verify key facts, especially statistics, dates, and specific claims',
-      'Assume it\'s wrong and ignore it',
-      'Copy it directly into your work without reading it',
+      'The AI will refuse to discuss events after that date',
+      'The AI may not have knowledge of events or developments after that cutoff',
+      'The AI\'s responses are only accurate for information from that date',
+      'You need to update the AI manually to get new information',
     ],
     correct: 1,
+  },
+  {
+    name: 'q_technical',
+    q: 'Which of the following best describes how a large language model (LLM) generates a response?',
+    options: [
+      'It searches the internet and summarizes what it finds',
+      'It retrieves answers from a pre-built database of facts',
+      'It predicts the most likely next word based on patterns learned during training',
+      'It reasons through problems the same way a human brain does',
+    ],
+    correct: 2,
   },
 ];
 
@@ -796,11 +827,16 @@ ratingItems.forEach(item => {
       ${item.label}
       <small>${item.hint}</small>
     </div>
-    <div class="dot-scale">
-      ${[1,2,3,4,5].map(n => `
-        <input type="radio" name="${item.name}" id="${item.name}_${n}" value="${n}">
-        <label for="${item.name}_${n}" title="Rating: ${n}"></label>
-      `).join('')}
+    <div class="dot-scale-wrap">
+      <div class="dot-numbers">
+        ${[1,2,3,4,5].map(n => `<span>${n}</span>`).join('')}
+      </div>
+      <div class="dot-scale">
+        ${[1,2,3,4,5].map(n => `
+          <input type="radio" name="${item.name}" id="${item.name}_${n}" value="${n}">
+          <label for="${item.name}_${n}" title="Rating: ${n}"></label>
+        `).join('')}
+      </div>
     </div>`;
   ratingsContainer.appendChild(row);
 });
@@ -875,7 +911,7 @@ document.getElementById('assessment').addEventListener('submit', function(e) {
     if (el && el.value === 'correct') know++;
   });
 
-  const combined = (conf / 50) * 0.5 + (know / 7) * 0.5;
+  const combined = (conf / 50) * 0.5 + (know / 8) * 0.5;
   let level;
   if (combined < 0.35)      level = 'Beginner';
   else if (combined < 0.60) level = 'Developing';
@@ -883,7 +919,7 @@ document.getElementById('assessment').addEventListener('submit', function(e) {
   else                       level = 'Advanced';
 
   document.getElementById('field-conf').value  = conf + ' / 50';
-  document.getElementById('field-know').value  = know + ' / 7';
+  document.getElementById('field-know').value  = know + ' / 8';
   document.getElementById('field-level').value = level;
   document.getElementById('thankyou-level').textContent = 'Starting level: ' + level;
 
