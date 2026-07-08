@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Readiness Assessment — AI with MacKenzie</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:       #2d4a3e;
+      --green-light: #3d6354;
+      --green-pale:  #eef3f1;
+      --cream:       #faf8f5;
+      --text:        #1c1c1c;
+      --muted:       #5a6a65;
+      --white:       #ffffff;
+      --accent:      #c8a96e;
+      --border:      #ddd8d0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid #e4ddd6;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--green); }
+
+    .nav-back svg {
+      width: 16px; height: 16px;
+      stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* HEADER */
+    .page-header {
+      background: var(--green);
+      padding: 3.5rem 2rem;
+      text-align: center;
+    }
+
+    .page-header-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .page-header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .page-header p {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin: 0 auto 1.6rem;
+      line-height: 1.7;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85);
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      font-size: 0.82rem;
+    }
+
+    /* PROGRESS */
+    .progress-wrap {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 2rem;
+      position: sticky;
+      top: 64px;
+      z-index: 50;
+    }
+
+    .progress-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .progress-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+      min-width: 60px;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 4px;
+      background: var(--green-pale);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    /* FORM BODY */
+    .form-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    /* SECTION CARDS */
+    .form-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 2.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.6rem;
+      padding-bottom: 1.4rem;
+      border-bottom: 1px solid var(--green-pale);
+    }
+
+    .section-tag {
+      flex-shrink: 0;
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-top: 3px;
+    }
+
+    .tag-info    { background: var(--green-pale); color: var(--green); }
+    .tag-rating  { background: #fdf3eb; color: #b05a1a; }
+    .tag-quiz    { background: #eaf0fd; color: #2558d9; }
+    .tag-open    { background: #eef7f0; color: #2a7a4b; }
+
+    .form-section-header-text h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      font-weight: normal;
+      color: var(--green);
+      line-height: 1.3;
+    }
+
+    .form-section-header-text p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    /* NAME ROW */
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .field-row:last-child { margin-bottom: 0; }
+
+    .field-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--cream);
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    input:focus { outline: none; border-color: var(--green); background: var(--white); }
+    input::placeholder { color: #b0b8b5; }
+
+    /* RATING ITEMS */
+    .scale-legend {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.2rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .rating-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--green-pale);
+    }
+
+    .rating-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .rating-label-text {
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .rating-label-text small {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .dot-scale {
+      display: flex;
+      gap: 5px;
+    }
+
+    .dot-scale input[type="radio"] { display: none; }
+
+    .dot-scale label {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      cursor: pointer;
+      background: var(--cream);
+      transition: all 0.15s;
+      display: block;
+    }
+
+    .dot-scale label:hover { border-color: var(--accent); background: #fdf3eb; }
+
+    .dot-scale input[type="radio"]:checked + label {
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+
+    /* MULTIPLE CHOICE */
+    .mc-item {
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--green-pale);
+    }
+
+    .mc-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .mc-question {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+      line-height: 1.5;
+    }
+
+    .mc-options { display: flex; flex-direction: column; gap: 5px; }
+
+    .mc-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      padding: 0.55rem 0.8rem;
+      border-radius: 8px;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+
+    .mc-option:hover { background: var(--green-pale); border-color: #c5d8d2; }
+    .mc-option.selected { background: var(--green-pale); border-color: var(--green); }
+
+    .mc-option input[type="radio"] { display: none; }
+
+    .radio-circle {
+      width: 17px; height: 17px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      margin-top: 1px;
+      background: white;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.12s;
+    }
+
+    .mc-option.selected .radio-circle { border-color: var(--green); background: var(--green); }
+
+    .radio-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: white;
+      opacity: 0;
+      transition: opacity 0.12s;
+    }
+
+    .mc-option.selected .radio-dot { opacity: 1; }
+
+    .option-text { font-size: 0.88rem; color: var(--muted); line-height: 1.45; }
+
+    /* OPEN QUESTIONS */
+    .open-item {
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--green-pale);
+    }
+
+    .open-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .open-question {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+      line-height: 1.5;
+    }
+
+    .open-hint { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.6rem; }
+
+    textarea {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      color: var(--text);
+      background: var(--cream);
+      resize: vertical;
+      min-height: 80px;
+      line-height: 1.6;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    textarea:focus { outline: none; border-color: var(--green); background: var(--white); }
+    textarea::placeholder { color: #b0b8b5; }
+
+    /* HIDDEN FIELDS */
+    .hidden { display: none; }
+
+    /* SUBMIT */
+    .submit-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .submit-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 360px;
+    }
+
+    .btn-submit {
+      flex-shrink: 0;
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-submit:hover { background: var(--green-light); transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); }
+
+    /* THANK YOU STATE */
+    .thankyou {
+      display: none;
+      background: var(--green);
+      border-radius: 16px;
+      padding: 3rem 2.4rem;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .thankyou.visible { display: block; }
+
+    .thankyou-icon {
+      width: 56px; height: 56px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.2rem;
+    }
+
+    .thankyou-icon svg {
+      width: 26px; height: 26px;
+      stroke: var(--white); fill: none;
+      stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .thankyou h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+
+    .thankyou p {
+      color: rgba(255,255,255,0.78);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 440px;
+      margin: 0 auto 1.6rem;
+    }
+
+    .thankyou-level {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.6rem;
+    }
+
+    .thankyou a {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.75rem 1.8rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: opacity 0.2s;
+    }
+
+    .thankyou a:hover { opacity: 0.88; }
+
+    /* FOOTER */
+    footer { background: #1a2e27; color: rgba(255,255,255,0.5); text-align: center; padding: 2rem; font-size: 0.82rem; }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .form-section { padding: 1.4rem 1.2rem; }
+      .field-row { grid-template-columns: 1fr; }
+      .rating-item { grid-template-columns: 1fr; gap: 0.6rem; }
+      .dot-scale { justify-content: flex-start; }
+      .submit-section { flex-direction: column; align-items: stretch; }
+      .btn-submit { text-align: center; }
+      .progress-wrap { top: 64px; }
+      .form-body { padding: 2rem 1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">AI with MacKenzie</a>
+    <a href="/" class="nav-back">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to site
+    </a>
+  </nav>
+
+  <div class="page-header">
+    <p class="page-header-eyebrow">Before We Begin</p>
+    <h1>AI Readiness Assessment</h1>
+    <p>This helps me understand where you're starting from so I can design sessions that are genuinely useful — not too basic, not over your head. There are no wrong answers.</p>
+    <div class="header-meta">
+      <span class="meta-pill">8–12 minutes</span>
+      <span class="meta-pill">3 sections</span>
+      <span class="meta-pill">Responses sent to MacKenzie</span>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-inner">
+      <span class="progress-label" id="progress-label">0% done</span>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+  </div>
+
+  <div class="form-body">
+
+    <!-- Replace YOUR_FORM_ID with your actual Formspree form ID -->
+    <form id="assessment" action="https://formspree.io/f/maqgzjvy" method="POST">
+
+      <!-- Hidden computed fields -->
+      <input type="hidden" name="confidence_score" id="field-conf">
+      <input type="hidden" name="knowledge_score" id="field-know">
+      <input type="hidden" name="level" id="field-level">
+
+      <!-- Section 0: About you -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-tag tag-info">About You</span>
+          <div class="form-section-header-text">
+            <h2>Let's start with the basics</h2>
+            <p>So I know who I'm designing this training for</p>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="First Last" autocomplete="name">
+          </div>
+          <div class="field-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label for="role">Your Role or Job Title</label>
+            <input type="text" id="role" name="role" placeholder="e.g. Marketing Manager, Owner">
+          </div>
+          <div class="field-group">
+            <label for="business">Business or Industry</label>
+            <input type="text" id="business" name="business" placeholder="e.g. Real estate, Healthcare">
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 1: Self-rating -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-tag tag-rating">Self-Rating</span>
+          <div class="form-section-header-text">
+            <h2>How confident are you with each of these?</h2>
+            <p>Rate from 1 (never tried) to 5 (use it confidently and regularly)</p>
+          </div>
+        </div>
+
+        <div class="scale-legend">
+          <span>1 = Never tried</span>
+          <span>5 = Very confident</span>
+        </div>
+
+        <div id="ratings-container"></div>
+      </div>
+
+      <!-- Section 2: Knowledge check -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-tag tag-quiz">Knowledge Check</span>
+          <div class="form-section-header-text">
+            <h2>Quick concept check</h2>
+            <p>Pick the best answer — your score helps me calibrate where to start</p>
+          </div>
+        </div>
+
+        <div id="quiz-container"></div>
+      </div>
+
+      <!-- Section 3: Open questions -->
+      <div class="form-section">
+        <div class="form-section-header">
+          <span class="section-tag tag-open">In Your Own Words</span>
+          <div class="form-section-header-text">
+            <h2>Tell me about your situation</h2>
+            <p>These help me understand your real context — be as specific as you'd like</p>
+          </div>
+        </div>
+
+        <div id="open-container"></div>
+      </div>
+
+      <div class="submit-section">
+        <p class="submit-note">Your answers go directly to MacKenzie and are only used to plan your training. Nothing is shared or published.</p>
+        <button type="submit" class="btn-submit">Submit Assessment →</button>
+      </div>
+
+    </form>
+
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2>You're all set!</h2>
+      <p>Your assessment has been sent to MacKenzie. She'll review it before your first session and tailor everything to where you're starting from.</p>
+      <div class="thankyou-level" id="thankyou-level"></div>
+      <p style="margin-bottom:1.6rem">MacKenzie will be in touch within 24 hours to confirm your first session.</p>
+      <a href="/">Back to the site</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 AI with MacKenzie &middot; <a href="mailto:mackenziemcummins@gmail.com">mackenziemcummins@gmail.com</a></p>
+  </footer>
+
+<script>
+const ratingItems = [
+  { name: 'rating_chatbots',      label: 'Using ChatGPT, Claude, or similar AI chatbots',      hint: 'Having back-and-forth conversations with AI' },
+  { name: 'rating_prompting',     label: 'Writing effective prompts',                            hint: 'Knowing how to phrase requests to get useful results' },
+  { name: 'rating_writing',       label: 'Using AI for writing or editing',                      hint: 'Drafts, rewrites, proofreading, tone adjustments' },
+  { name: 'rating_research',      label: 'Using AI for research or summarizing',                 hint: 'Finding information, condensing documents, Q&A over content' },
+  { name: 'rating_daily',         label: 'Integrating AI into your daily work',                  hint: 'Consistently using AI tools as part of your workflow' },
+  { name: 'rating_comms',         label: 'Using AI for customer communication',                  hint: 'Emails, responses, sales copy, support messages' },
+  { name: 'rating_accuracy',      label: 'Evaluating AI output for accuracy',                    hint: 'Spotting errors, hallucinations, or off-brand responses' },
+  { name: 'rating_staying_current', label: 'Keeping up with new AI tools and developments',     hint: 'Staying current as the landscape changes' },
+  { name: 'rating_tools',         label: 'Exploring AI tools beyond ChatGPT',                   hint: 'Perplexity, Gemini, Midjourney, Notion AI, Copilot, etc.' },
+  { name: 'rating_strategy',      label: 'Applying AI to business strategy or planning',         hint: 'Using AI to think through problems, not just tasks' },
+];
+
+const quizItems = [
+  {
+    name: 'q_hallucination',
+    q: 'An AI "hallucination" refers to:',
+    options: [
+      'The AI generating creative but off-topic ideas',
+      'The AI confidently stating something false or made up',
+      'The AI being slow to respond',
+      'The AI refusing to answer a question',
+    ],
+    correct: 1,
+  },
+  {
+    name: 'q_prompting',
+    q: 'Which of the following is generally the most effective way to prompt an AI?',
+    options: [
+      'Keep it as short as possible so it doesn\'t get confused',
+      'Give it context, a clear role, and a specific outcome you want',
+      'Ask multiple unrelated questions in one message',
+      'Use all-caps to emphasize important parts',
+    ],
+    correct: 1,
+  },
+  {
+    name: 'q_context_window',
+    q: 'A "context window" in AI refers to:',
+    options: [
+      'The history or memory an AI can work with in a single session',
+      'The browser tab the AI runs in',
+      'The settings panel for adjusting AI behavior',
+      'How long the AI takes to generate a response',
+    ],
+    correct: 0,
+  },
+  {
+    name: 'q_best_use',
+    q: 'Which of these is the best use case for AI right now?',
+    options: [
+      'Making final legal or medical decisions independently',
+      'Real-time web browsing without a plugin or tool',
+      'Drafting, summarizing, and iterating on written content',
+      'Replacing all human judgment in business decisions',
+    ],
+    correct: 2,
+  },
+  {
+    name: 'q_tone',
+    q: 'If you want an AI to match a specific writing tone, the best approach is:',
+    options: [
+      'Just ask it to "write better"',
+      'Give it a sample of writing you want to match and describe the tone',
+      'Use a different AI tool each time',
+      'Ask it once and never refine the output',
+    ],
+    correct: 1,
+  },
+  {
+    name: 'q_privacy',
+    q: 'Which statement about AI and privacy is most accurate?',
+    options: [
+      'Everything you type into a free AI tool is private by default',
+      'AI models remember your conversations forever across all sessions',
+      'You should avoid entering sensitive customer or business data into public AI tools',
+      'AI companies are legally prohibited from using your inputs for training',
+    ],
+    correct: 2,
+  },
+  {
+    name: 'q_verify',
+    q: 'When an AI gives you a long, confident-sounding answer, you should:',
+    options: [
+      'Trust it — AI doesn\'t make things up',
+      'Verify key facts, especially statistics, dates, and specific claims',
+      'Assume it\'s wrong and ignore it',
+      'Copy it directly into your work without reading it',
+    ],
+    correct: 1,
+  },
+];
+
+const openItems = [
+  {
+    name: 'open_tools_tried',
+    q: 'Which AI tools have you tried, even briefly?',
+    hint: 'e.g. ChatGPT, Claude, Gemini, Perplexity, Midjourney, Notion AI, Copilot…',
+    rows: 2,
+  },
+  {
+    name: 'open_goal',
+    q: 'What\'s a specific task or problem in your work you\'d most like AI to help with?',
+    hint: 'The more specific the better — "writing weekly client updates" beats "being more productive"',
+    rows: 3,
+  },
+  {
+    name: 'open_frustration',
+    q: 'What\'s been your biggest frustration or confusion with AI so far?',
+    hint: 'No judgment — this is exactly what training is for',
+    rows: 3,
+  },
+  {
+    name: 'open_success',
+    q: 'What does success look like for you after this training?',
+    hint: 'What would you be doing differently?',
+    rows: 3,
+  },
+];
+
+// Render ratings
+const ratingsContainer = document.getElementById('ratings-container');
+ratingItems.forEach(item => {
+  const row = document.createElement('div');
+  row.className = 'rating-item';
+  row.innerHTML = `
+    <div class="rating-label-text">
+      ${item.label}
+      <small>${item.hint}</small>
+    </div>
+    <div class="dot-scale">
+      ${[1,2,3,4,5].map(n => `
+        <input type="radio" name="${item.name}" id="${item.name}_${n}" value="${n}">
+        <label for="${item.name}_${n}" title="Rating: ${n}"></label>
+      `).join('')}
+    </div>`;
+  ratingsContainer.appendChild(row);
+});
+
+// Render quiz
+const quizContainer = document.getElementById('quiz-container');
+quizItems.forEach((item, qi) => {
+  const div = document.createElement('div');
+  div.className = 'mc-item';
+  div.innerHTML = `
+    <div class="mc-question">${qi + 1}. ${item.q}</div>
+    <div class="mc-options">
+      ${item.options.map((opt, oi) => `
+        <label class="mc-option" data-q="${item.name}" data-i="${oi}" data-correct="${oi === item.correct}">
+          <input type="radio" name="${item.name}" value="${oi === item.correct ? 'correct' : 'incorrect_' + oi}">
+          <span class="radio-circle"><span class="radio-dot"></span></span>
+          <span class="option-text">${opt}</span>
+        </label>
+      `).join('')}
+    </div>`;
+  quizContainer.appendChild(div);
+});
+
+// Render open questions
+const openContainer = document.getElementById('open-container');
+openItems.forEach(item => {
+  const div = document.createElement('div');
+  div.className = 'open-item';
+  div.innerHTML = `
+    <div class="open-question">${item.q}</div>
+    <div class="open-hint">${item.hint}</div>
+    <textarea name="${item.name}" rows="${item.rows}" placeholder="Write as much or as little as you like…"></textarea>`;
+  openContainer.appendChild(div);
+});
+
+// MC selection highlight
+document.addEventListener('change', e => {
+  const input = e.target;
+  if (input.type !== 'radio') return;
+  const qName = input.closest('.mc-option')?.dataset.q;
+  if (qName) {
+    document.querySelectorAll(`[data-q="${qName}"]`).forEach(el => el.classList.remove('selected'));
+    input.closest('.mc-option').classList.add('selected');
+  }
+  updateProgress();
+});
+
+// Progress
+function updateProgress() {
+  const ratingDone = ratingItems.filter(r => document.querySelector(`input[name="${r.name}"]:checked`)).length;
+  const quizDone   = quizItems.filter(q => document.querySelector(`input[name="${q.name}"]:checked`)).length;
+  const total = ratingItems.length + quizItems.length;
+  const done  = ratingDone + quizDone;
+  const pct   = Math.round((done / total) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = pct + '% done';
+}
+
+// Compute level before submit
+document.getElementById('assessment').addEventListener('submit', function(e) {
+  // Confidence score
+  let conf = 0;
+  ratingItems.forEach(r => {
+    const el = document.querySelector(`input[name="${r.name}"]:checked`);
+    if (el) conf += parseInt(el.value);
+  });
+
+  // Knowledge score
+  let know = 0;
+  quizItems.forEach(q => {
+    const el = document.querySelector(`input[name="${q.name}"]:checked`);
+    if (el && el.value === 'correct') know++;
+  });
+
+  const combined = (conf / 50) * 0.5 + (know / 7) * 0.5;
+  let level;
+  if (combined < 0.35)      level = 'Beginner';
+  else if (combined < 0.60) level = 'Developing';
+  else if (combined < 0.82) level = 'Proficient';
+  else                       level = 'Advanced';
+
+  document.getElementById('field-conf').value  = conf + ' / 50';
+  document.getElementById('field-know').value  = know + ' / 7';
+  document.getElementById('field-level').value = level;
+  document.getElementById('thankyou-level').textContent = 'Starting level: ' + level;
+
+  // Show thank-you (Formspree handles the actual submission)
+  // We let the form submit naturally; show thank-you on Formspree redirect
+  // OR intercept with fetch for a smoother UX:
+  e.preventDefault();
+
+  fetch(this.action, {
+    method: 'POST',
+    body: new FormData(this),
+    headers: { 'Accept': 'application/json' }
+  }).then(res => {
+    if (res.ok) {
+      document.getElementById('assessment').style.display = 'none';
+      document.getElementById('thankyou').classList.add('visible');
+      document.getElementById('progress-fill').style.width = '100%';
+      document.getElementById('progress-label').textContent = 'Complete';
+      document.getElementById('thankyou').scrollIntoView({ behavior: 'smooth' });
+    } else {
+      alert('Something went wrong. Please email MacKenzie directly at mackenziemcummins@gmail.com.');
+    }
+  }).catch(() => {
+    alert('Something went wrong. Please email MacKenzie directly at mackenziemcummins@gmail.com.');
+  });
+});
+</script>
+
+</body>
+</html>
